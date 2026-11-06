@@ -116,3 +116,14 @@ FinGoal-AI/
 - Uploaded statements are strictly segregated per user and excluded from version control.
 - Never commit actual financial records or `.env` files to git.
 
+# backend commands
+
+Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
+
+.\venv\Scripts\Activate.ps1
+
+python -m uvicorn app.main:app --reload --host 127.0.0.1 --port 8001
+
+# frontend command
+
+npm.cmd run dev
