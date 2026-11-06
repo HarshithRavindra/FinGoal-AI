@@ -1,6 +1,6 @@
 """SQLAlchemy Database Models for FinGoal-AI."""
 
-from datetime import datetime, timezone
+from datetime import datetime, timezone, date
 from sqlalchemy import (
     Column,
     Integer,
@@ -43,6 +43,7 @@ class User(Base):
     savings_plans = relationship("SavingsPlan", back_populates="user", cascade="all, delete-orphan")
     plan_adjustments = relationship("PlanAdjustment", back_populates="user", cascade="all, delete-orphan")
     recommendations = relationship("Recommendation", back_populates="user", cascade="all, delete-orphan")
+    savings_allocations = relationship("SavingsAllocation", back_populates="user", cascade="all, delete-orphan")
 
 
 class BankStatement(Base):
@@ -159,6 +160,7 @@ class SavingsGoal(Base):
     user = relationship("User", back_populates="savings_goals")
     plans = relationship("SavingsPlan", back_populates="goal", cascade="all, delete-orphan")
     adjustments = relationship("PlanAdjustment", back_populates="goal", cascade="all, delete-orphan")
+    allocations = relationship("SavingsAllocation", back_populates="goal", cascade="all, delete-orphan")
 
 
 class SavingsPlan(Base):
@@ -225,4 +227,22 @@ class Recommendation(Base):
 
     # Relationships
     user = relationship("User", back_populates="recommendations")
+
+
+class SavingsAllocation(Base):
+    """Audit record for automatic and manual savings allocation across goals."""
+    __tablename__ = "savings_allocations"
+
+    id = Column(Integer, primary_key=True, index=True)
+    user_id = Column(Integer, ForeignKey("users.id", ondelete="CASCADE"), index=True, nullable=False)
+    goal_id = Column(Integer, ForeignKey("savings_goals.id", ondelete="CASCADE"), index=True, nullable=False)
+    amount = Column(Numeric(14, 2), nullable=False)
+    allocation_date = Column(Date, default=date.today)
+    source = Column(String(50), default="accumulated_savings")  # accumulated_savings, monthly_surplus, manual
+    notes = Column(Text, nullable=True)
+    created_at = Column(DateTime(timezone=True), default=utc_now)
+
+    # Relationships
+    user = relationship("User", back_populates="savings_allocations")
+    goal = relationship("SavingsGoal", back_populates="allocations")
 

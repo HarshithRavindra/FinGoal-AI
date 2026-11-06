@@ -135,3 +135,4 @@ def test_csv_no_credit_column_fallback():
     """CSV with single amount column should still parse without crashing."""
     result = parse_csv_statement(NO_CREDIT_CSV)
     assert isinstance(result, list)
+

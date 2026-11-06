@@ -218,3 +218,4 @@ def test_categorizer_returns_tuple():
 def test_categorizer_confidence_in_range():
     _, conf = categorizer.predict("Netflix Subscription", "debit")
     assert 0.0 <= conf <= 1.0
+
