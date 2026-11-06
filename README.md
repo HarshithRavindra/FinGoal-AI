@@ -13,3 +13,5 @@ and Adaptive Goal Planning System.
 
 ## Project Status
 Requirement Analysis
+# FinGoal-AI
+AI-Powered Personal Financial Health Monitoring and Adaptive Goal Planning System
