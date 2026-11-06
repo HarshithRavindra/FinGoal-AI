@@ -18,7 +18,7 @@ export const goalsApi = {
   },
 
   updateGoal: async (id: number, goal: UpdateGoalRequest): Promise<SavingsGoal> => {
-    const response = await api.put<SavingsGoal>(`/goals/${id}`, goal);
+    const response = await api.patch<SavingsGoal>(`/goals/${id}`, goal);
     return response.data;
   },
 

@@ -9,7 +9,7 @@ export const reschedulingApi = {
     payload: UnexpectedExpenseInput
   ): Promise<AdaptiveRescheduleResult> => {
     const response = await api.post<AdaptiveRescheduleResult>(
-      '/reschedule/simulate',
+      '/rescheduling/simulate',
       payload
     );
     return response.data;
@@ -19,7 +19,7 @@ export const reschedulingApi = {
     payload: UnexpectedExpenseInput
   ): Promise<AdaptiveRescheduleResult> => {
     const response = await api.post<AdaptiveRescheduleResult>(
-      '/reschedule/apply',
+      '/rescheduling/apply',
       payload
     );
     return response.data;

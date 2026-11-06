@@ -13,7 +13,7 @@ class Settings(BaseSettings):
     ENVIRONMENT: str = "development"
 
     # Database
-    DATABASE_URL: str = "postgresql://postgres:postgres@localhost:5432/fingoal_db"
+    DATABASE_URL: str = "postgresql+psycopg2://postgres:postgres@localhost:5432/fingoal_db"
 
     # Security & JWT
     SECRET_KEY: str = "development-secret-key-change-in-production-only"
