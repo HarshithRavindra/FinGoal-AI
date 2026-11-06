@@ -218,3 +218,33 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# FinGoal-AI Project Specific Ignores
+# Environment configurations
+.env
+.env.*
+!.env.example
+
+# Node / Frontend
+node_modules/
+frontend/node_modules/
+frontend/dist/
+frontend/.vite/
+dist/
+
+# Bank Statements and User Uploads (Strict security: never commit bank statements)
+uploads/
+backend/uploads/
+*.pdf
+*.csv
+!tests/sample_data/*.csv
+!tests/sample_data/*.pdf
+
+# OS Files
+.DS_Store
+Thumbs.db
+
+# IDE Files
+.vscode/
+.idea/
+
